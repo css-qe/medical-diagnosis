@@ -5,6 +5,8 @@ metadata:
   namespace: {{ .Values.global.xraylab.namespace }}
   labels:
     strimzi.io/cluster: {{ .Values.kafka.cluster.name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   partitions: {{ .Values.kafka.topic.partitions }}
   replicas: {{ .Values.kafka.topic.replicas }}
