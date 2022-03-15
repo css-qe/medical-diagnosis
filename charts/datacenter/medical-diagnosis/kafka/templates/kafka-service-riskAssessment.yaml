@@ -62,7 +62,7 @@ spec:
         resources:
           limits:
             cpu: {{ .Values.kafkaService.containers.resources.limits.cpu }}
-            memory: {{ .Values.kafakService.containers.resources.limits.memory }}
+            memory: {{ .Values.kafkaService.containers.resources.limits.memory }}
           requests:
             cpu: {{ .Values.kafkaService.containers.resources.requests.cpu }}
             memory: {{ .Values.kafkaService.containers.resources.requests.memory }}
