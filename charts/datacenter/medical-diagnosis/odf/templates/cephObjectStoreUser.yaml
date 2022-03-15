@@ -2,7 +2,7 @@ apiVersion: ceph.rook.io/v1
 kind: CephObjectStoreUser
 metadata:
   name: {{ .Values.objectStore.user }}
-  namespace: {{ .Values.global.pattern.namespace }}
+  namespace: {{ .Values.odf.namespace }}
 spec:
   store: {{ .Values.odf.storageClass.objectStoreName }}
   displayName: {{ .Values.objectStore.displayName }}
