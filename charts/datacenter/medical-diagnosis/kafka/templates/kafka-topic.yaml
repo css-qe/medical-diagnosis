@@ -1,0 +1,13 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: {{ .Values.kafka.topic.name }}
+  namespace: {{ .Values.global.xraylab.namespace }}
+  labels:
+    strimzi.io/cluster: {{ .Values.kafka.cluster.name }}
+spec:
+  partitions: {{ .Values.kafka.topic.partitions }}
+  replicas: {{ .Values.kafka.topic.replicas }}
+  config:
+    retention.ms: {{ .Values.kafka.topic.config.retentionMs }}
+    segment.bytes: {{ .Values.kafka.topic.config.segmentBytes }}
