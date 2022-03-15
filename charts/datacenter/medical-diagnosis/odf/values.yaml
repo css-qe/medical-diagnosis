@@ -93,9 +93,9 @@ rbac:
     name: xraylab-sa
     namespace: xraylab-1
 
-  job:
-    name:
-    namespace:
-    image:
-    serviceAccount:
-    serviceAccountName:
+job:
+  name: odf-user-key-export
+  namespace: xraylab-1
+  image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+  serviceAccount: xraylab-sa
+  serviceAccountName: xraylab-sa
