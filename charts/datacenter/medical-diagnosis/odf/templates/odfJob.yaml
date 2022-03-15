@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: get-ocs-secret
+  namespace: xraylab-1
+spec:
+  template:
+    spec:
+      containers: 
+      - image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+        command:
+        - /bin/bash
+        - -c
+        - |
+{{- include "odf.jobs" . | nindent 10 }}
+        name: get-ocs-user-secret
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      serviceAccount: xrylab-mgr
+      serviceAccountName: xraylab-mgr
+      terminationGracePeriodSeconds: 30
+
