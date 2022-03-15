@@ -1,0 +1,26 @@
+{{- range .Values.knative.operators }}
+{{- if eq .kind "KnativeKafka" }}
+apiVersion: operator.serverless.openshift.io/v1alpha1
+{{- else }}
+apiVersion: operator.knative.dev/v1alpha1
+{{- end }}
+kind: {{ .kind }}
+metadata:
+  annotations:
+{{- if eq .kind "KnativeKafka" }}
+    argocd.argoproj.io/sync-wave: "9"
+{{- else }}
+    argocd.argoproj.io/sync-wave: "4"
+{{- end }}
+  name: {{ .name }}
+  namespace: {{ .namespace }}
+{{- if eq .kind "KnativeKafka" }}
+spec:
+  channel:
+    enabled: true
+    bootstrapServers: {{ $.Values.knative.kafkaSource.bootstrapserver }}
+  source:
+    enabled: true
+{{- end }}
+---
+{{- end }}
