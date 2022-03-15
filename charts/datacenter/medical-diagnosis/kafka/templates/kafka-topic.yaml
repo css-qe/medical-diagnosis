@@ -6,7 +6,7 @@ metadata:
   labels:
     strimzi.io/cluster: {{ .Values.kafka.cluster.name }}
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   partitions: {{ .Values.kafka.topic.partitions }}
   replicas: {{ .Values.kafka.topic.replicas }}
