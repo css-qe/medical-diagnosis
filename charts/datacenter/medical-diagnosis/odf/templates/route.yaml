@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.odf.route.name }}
   namespace: {{ .Values.odf.namespace }}
   labels:
-{{- include "odf.labels" . | indent 4 }}
+{{- include "odf.labels" . | nindent 4 }}
 spec:
   to:
     kind: {{ .Values.odf.route.kind }}
