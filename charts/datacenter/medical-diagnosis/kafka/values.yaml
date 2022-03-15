@@ -1,0 +1,69 @@
+kafka:
+  app: "kafdrop"
+  cluster:
+    name: "xray-cluster"
+    replicas: 3
+  deployment:
+    replicas: 1
+    image: "obsidiandynamics/kafdrop:latest"
+    env:
+      - name: KAFKA_BROKERCONNECT
+        value: "xray-cluster-kafka-0.xray-cluster-kafka-brokers.xraylab-1.svc:9092"
+      - name: JVM_OPTS
+        value: "-Xms32M -Xmx64M"
+      - name: SERVER_SERVLET_CONTEXTPATH
+        value: "/"
+  route:
+    subdomain: ""
+    weight: 100
+    wildCardPolicy: "None"
+  service:
+    protocol: "TCP"
+    port: 9000
+    targetPort: 9000
+  config:
+    listeners:
+    - name: plain
+      port: 9092
+      type: internal
+      tls: false
+    - name: tls
+      port: 9093
+      type: internal
+      tls: true
+    logFormatVersion: '2.8'
+  version: 2.8.0
+  replicas: 3
+  storage:
+    type: ephemeral
+  topic:
+    name: xray-images
+    partitions: 1
+    replicas: 1
+    config:
+      retentionMs: 604800000
+      segmentBytes: 1073741824
+
+zookeeper:
+  replicas: 3
+  storage:
+    type: ephemeral
+
+kafkaSource:
+  bootstrapServer: "xray-cluster-kafka-bootstrap.xraylab-1.svc:9092"
+  name: "xray-images"
+  consumerGroup: "risk-assessment"
+
+kafkaService:
+  name: risk-assessment
+  containers:
+    image: quay.io/rh-data-services/xraylab-risk-assessment:latest
+    ports:
+      containerPort: 5000
+    resources:
+      limits:
+        cpu: '2'
+        memory: 500M
+      requests:
+        cpu: 400m
+        memory: 100M
