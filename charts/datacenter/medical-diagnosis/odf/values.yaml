@@ -3,7 +3,7 @@ odf:
   route:
     name: s3-rgw
     kind: Service
-    name: rook-ceph-rgw-ocs-storagecluster-cephobjectstore
+    serviceName: rook-ceph-rgw-ocs-storagecluster-cephobjectstore
     weight: 100
     port:
       targetPort: http
