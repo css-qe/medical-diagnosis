@@ -61,7 +61,7 @@ spec:
               key: bucket-base-name
         resources:
           limits:
-            cpu: {{ .Values.kafkaService.containers.resources.limits.cpu }}
+            cpu: {{ .Values.kafkaService.containers.resources.limits.cpu | squote }}
             memory: {{ .Values.kafkaService.containers.resources.limits.memory }}
           requests:
             cpu: {{ .Values.kafkaService.containers.resources.requests.cpu }}
