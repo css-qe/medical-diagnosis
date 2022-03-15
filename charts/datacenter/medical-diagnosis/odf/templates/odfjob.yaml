@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: get-ocs-secret
+  namespace: xraylab-1
+spec:
+  template:
+    spec:
+      containers: 
+      - image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+        command:
+        - /bin/bash
+        - -c
+        - |
+          AWS_ACCESS_KEY_ID=$(oc extract -n openshift-storage secret/rook-ceph-object-user-ocs-storagecluster-cephobjectstore-xraylab-1 --keys=AccessKey --to=-)
+          AWS_SECRET_ACCESS_KEY=$(oc extract -n openshift-storage secret/rook-ceph-object-user-ocs-storagecluster-cephobjectstore-xraylab-1 --keys=SecretKey --to=-)
+          oc create secret generic s3-secret-bck --from-literal=AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --from-literal=AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} -n xraylab-1
+        name: get-ocs-user-secret
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      serviceAccount: xrylab-mgr
+      serviceAccountName: xraylab-mgr
+      terminationGracePeriodSeconds: 30
+
