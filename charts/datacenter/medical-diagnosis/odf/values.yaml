@@ -50,4 +50,52 @@ toolbox:
   enableCephTools: true
 
 rbac:
-  serviceAccountName: 
+  createRBAC: true
+  createRoleBinding: true
+  roles:
+  - name: odf-user-mgmt
+    clusterRole: false
+    clusterRoleBinding: false
+    namespace: opesnhift-storage
+    apiGroups:
+    resources: secrets
+    verbs:
+    - '"get"'
+    - '"list"'
+    - '"watch"'
+    binding:
+      roleRef:
+        kind: Role
+      subjects:
+        kind: ServiceAccount
+        namespace: xraylab-1
+        name: xraylab-sa
+  - name: xraylab-mgmt
+    clusterRole: false
+    clusterRoleBinding: false
+    namespace: xraylab-1
+    apiGroups: 
+    resources: secrets
+    verbs:
+    - '"get"'
+    - '"list"'
+    - '"watch"'
+    - '"create"'
+    - '"update"'
+    - '"patch"'
+    binding:
+      kind: Role
+      subjects:
+        kind: ServiceAccount
+        namespace: xraylab-1
+        name: xraylab-sa
+  serviceAccount: 
+    name: xraylab-sa
+    namespace: xraylab-1
+
+  job:
+    name:
+    namespace:
+    image:
+    serviceAccount:
+    serviceAccountName:
