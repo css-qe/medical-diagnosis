@@ -1,0 +1,17 @@
+---
+{{- range .Values.rbac.roles -}}
+{{- if $.Values.rbac.createRBAC }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ .name }}
+{{- if eq .clusterRole false }}
+  namespace: {{ .namespace }}
+{{- end }}
+rules:
+- apiGroups: [""]
+  resources: [{{ .resources | quote }}]
+  verbs: [{{ join ", " .verbs }}]
+{{- end }}
+{{- end }}
+
