@@ -1,4 +1,4 @@
-ocs:
+odf:
   namespace: openshift-storage
   mon:
     requests:
