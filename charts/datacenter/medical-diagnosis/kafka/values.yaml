@@ -14,9 +14,9 @@ kafka:
       - name: SERVER_SERVLET_CONTEXTPATH
         value: "/"
   route:
-    subdomain: ""
+    subdomain: '""'
     weight: 100
-    wildCardPolicy: "None"
+    wildcardPolicy: "None"
   service:
     protocol: "TCP"
     port: 9000
