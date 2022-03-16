@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.xraydb.service.name }}
+  namespace: "{{ .Values.global.xraylab.namespace }}"
+spec:
+  ports:
+    - name: {{ .Values.xraydb.service.ports.name }}
+      protocol: {{ .Values.xraydb.service.protocol }}
+      port: {{ .Values.xraydb.service.ports.port }}
+      targetPort: {{ .Values.xraydb.service.ports.targetPort }}
+  selector:
+    app: {{ .Values.xraydb.service.selector.app }}
