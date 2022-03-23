@@ -61,57 +61,57 @@ clusterGroup:
   - name: odh
     namespace: opendatahub
     project: datacenter
-    path: charts/datacenter/opendatahub
+    path: charts/datacenter/medical-diagnosis/opendatahub
 
   - name: cephobjectstore
     namespace: openshift-storage
     project: datacenter
-    path: charts/datacenter/cephobjectstore
+    path: charts/datacenter/medical-diagnosis/odf
 
   - name: knative
     namespace: xraylab-1
     project: datacenter
-    path: charts/datacenter/xraylab/knative
+    path: charts/datacenter/medical-diagnosis/knative
 
   - name: demo
     namespace: xraylab-1
     project: datacenter
-    path: charts/datacenter/xraylab/demo
+    path: charts/datacenter/medical-diagnosis/demo
 
   - name: user
     namespace: xraylab-1
     project: datacenter
-    path: charts/datacenter/xraylab/user
+    path: charts/datacenter/medical-diagnosis/user
     
   - name: kafka
     namespace: xraylab-1
     project: datacenter
-    path: charts/datacenter/xraylab/kafka
+    path: charts/datacenter/medical-diagnosis/kafka
 
-  - name: kafkasource
-    namespace: xraylab-1
-    project: datacenter
-    path: charts/datacenter/xraylab/kafkasource
+#  - name: kafkasource
+#    namespace: xraylab-1
+#    project: datacenter
+#    path: charts/datacenter/xraylab/kafkasource
 
   - name:  grafana
     namespace: xraylab-1
     project: datacenter
-    path: charts/datacenter/xraylab/grafana
+    path: charts/datacenter/medical-diagnosis/grafana
 
   - name:  imageserver
     namespace: xraylab-1
     project: datacenter
-    path: charts/datacenter/xraylab/image-server
+    path: charts/datacenter/medical-diagnosis/image-server
 
   - name:  imagegenerator
     namespace: xraylab-1
     project: datacenter
-    path: charts/datacenter/xraylab/image-generator
+    path: charts/datacenter/medical-diagnosis/image-generator
     
   - name: xraydb
     namespace: xraylab-1
     project: datacenter
-    path: charts/datacenter/xraylab/xraydb
+    path: charts/datacenter/medical-diagnosis/xraydb
   
   - name: hashivault
     namespace: vault
