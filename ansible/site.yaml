@@ -1,6 +1,12 @@
 ---
-- name: medical-edge bootstrap playbook
+- name: Bootstrap common pattern configurations
   hosts: localhost
   connection: local
   roles:
-    - bootstrap
+    - pattern-bootstrap
+
+- name: bootstrap medical-diagnosis 
+  hosts: localhost
+  connection: local
+  roles:
+    - medical-diagnosis
