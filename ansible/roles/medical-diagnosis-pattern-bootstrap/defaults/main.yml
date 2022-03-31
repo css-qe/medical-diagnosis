@@ -3,8 +3,8 @@
 pattern_repo_dir: "{{ lookup('env', 'PWD') }}"
 
 # Variables for argosecret
-argo_target_namespace: manuela-ci
-pattern: industrial-edge
+argo_target_namespace: medical-diagnosis
+pattern: xraylab
 component: datacenter
 secret_name: "argocd-env"
 
@@ -24,3 +24,31 @@ vault_path: "secret/hub"
 
 # To DEBUG or not to DEBUG
 debug: False
+
+helm_charts_dir: ""
+helm_output_dir: /tmp
+
+odf:
+  template_dir: cephobjectstore
+  namespace: openshift-storage
+  expected_crds:
+    - backingstores.noobaa.io
+    - bucketclasses.noobaa.io
+    - noobaas.noobaa.io
+    - objectbucketclaims.objectbucket.io
+serverless:
+  template_dir: knative
+  eventing:
+    namespace: 'knative-eventing'
+kafka:
+  template_dir: kafka
+kafkasource:
+  template_dir: kafkasource
+grafana:
+  template_dir: grafana
+
+
+#xraylab variables
+xraylab:
+  namespace: xraylab-1
+  username: xraylab-1
