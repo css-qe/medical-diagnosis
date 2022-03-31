@@ -3,10 +3,4 @@
   hosts: localhost
   connection: local
   roles:
-    - pattern-bootstrap
-
-- name: bootstrap medical-diagnosis 
-  hosts: localhost
-  connection: local
-  roles:
-    - medical-diagnosis
+    - medical-diagnosis-pattern-bootstrap
