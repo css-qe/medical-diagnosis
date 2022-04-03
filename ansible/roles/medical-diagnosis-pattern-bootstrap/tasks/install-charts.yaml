@@ -14,19 +14,19 @@
       global:
         hubClusterDomain: "{{ hubcluster_apps_domain }}"
 
-- name: " [install-charts] Installing pipeline-setup helm chart"
-  kubernetes.core.helm:
-    name: medical-diagnosis-secrets
-    chart_ref: "{{ pattern_repo_dir }}/charts/secrets/pipeline-setup"
-    release_namespace: default
-    wait: yes
-    replace: yes
-    force: yes
-    values_files:
-      - "{{ secrets_file }}"
-      - "{{ globals_file }}"
-      - "/tmp/helmopts.yaml"
-  
+#- name: " [install-charts] Installing pipeline-setup helm chart"
+#  kubernetes.core.helm:
+#    name: medical-diagnosis-secrets
+#    chart_ref: "{{ pattern_repo_dir }}/charts/secrets/pipeline-setup"
+#    release_namespace: default
+#    wait: yes
+#    replace: yes
+#    force: yes
+#    values_files:
+#      - "{{ secrets_file }}"
+#      - "{{ globals_file }}"
+#      - "/tmp/helmopts.yaml"
+#  
 - name: " [install-charts] Installing Validated Pattern Framework helm chart"
   kubernetes.core.helm:
     name: medical-diagnosis
