@@ -37,7 +37,7 @@ clusterGroup:
 
   - name: ocs-operator
     namespace: openshift-storage
-    channel: stable-4.8
+    channel: stable-4.9
     csv: ocs-operator.v4.8.7
 
   - name: serverless-operator
