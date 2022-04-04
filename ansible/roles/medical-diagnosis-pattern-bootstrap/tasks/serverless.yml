@@ -1,3 +1,12 @@
+- name: "wait for s3-secret-bk to get created before starting serverless tasks"
+  kubernetes.core.k8s_info:
+    kind: Secret
+    name: s3-secret-bck
+    namespace: xraylab-1
+    wait: yes
+    wait_sleep: 10
+    wait_timeout: 360
+
 - name: "wait for {{ serverless.eventing.namespace }} to be created"
   kubernetes.core.k8s_info:
     kind: Namespace
