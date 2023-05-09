@@ -1,36 +1,36 @@
 global:
   pattern: xray
-
   options:
     useCSV: False
     syncPolicy: Automatic
     installPlanApproval: Automatic
 
-  datacenter:
-    cloudProvider: PROVIDE_CLOUDPROVIDER
-    storageClassName: PROVIDE_STORAGECLASS_NAME
-    region: PROVIDE_REGION
-    clustername: PROVIDE_CLUSTERNAME
-    domain: PROVIDE_DOMAIN
+  # XRay configuration for service-point config map
+  # Found in charts/datacenter/xraylab/templates
+  #   datacenter:
+  #     cloudProvider: <aws,azure,gcp>
+  #     storageClassName: <gp2>
+  #     region: <us-east-1>
+  #     clustername: <cluster-name>
+  #     domain: <domain>
 
+  datacenter:
+    cloudProvider: gcp
+    storageClassName: standard
+    region: us-west1
+    clustername: qe-md-hub-gcp-10978
+    domain: edge.css-qe.com
   xraylab:
     namespace: "xraylab-1"
 
     s3:
       # Values for S3 bucket access
-      # bucketSource: "provide s3 bucket name where images are stored"
-      bucketSource: PROVIDE_BUCKETSOURCE
-      # Bucket base name used for image-generator and image-server applications.
+      # Replace <region> with AWS region where S3 bucket was created
+      # Replace <cluster-name> and <domain> with your OpenShift cluster values
+      # bucketSource: "https://s3.<region>.amazonaws.com/com.redhat.claudiol.xray-source"
+      bucketSource: validated-patterns-md-xray
+      # Bucket base name used for xray images
       bucketBaseName: "xray-source"
 
 main:
   clusterGroupName: hub
-
-# Example Configuration
-  #datacenter:
-  #  cloudProvider: aws
-  #  storageClassName: gp2
-  #  region: us-east-1
-  #  clustername: example-sample
-  #  domain: patterns.redhat.com
-
